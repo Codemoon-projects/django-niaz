@@ -5,7 +5,7 @@ from django.conf import settings
 
 
 class MessageType(models.IntegerChoices):
-    ELAN = 1, "اعلان"
+    INFO = 1, "اعلان"
     WARNING = 2, "هشدار"
     DANGER = 3, "خطر"
     EVENT = 4, "رویداد"
@@ -14,36 +14,45 @@ class MessageType(models.IntegerChoices):
 class Messagesmodel(RefModel):
 
     class Meta:
-        verbose_name="رویداد"
-        verbose_name_plural="رویداد ها"    
+        verbose_name="پیام"
+        verbose_name_plural="پیام ها"    
     
-    time = jmodels.jDateField(
-        verbose_name="زمان",
-        null=True, 
-        blank=True,
-    )
-    
-    
-    type = models.IntegerField(
-        "نوع اعلان",
-        choices=MessageType.choices
-    )
-    
+
     title = models.CharField(
-        "عنوان پیام",
-        max_length=200
+        max_length=255, 
+        verbose_name="عنوان",
     )
-
-    message = models.TextField(
-        max_length=10000,
-        verbose_name="متن پیام",
+    description = models.TextField(
+        verbose_name="توضیحات",
+    )
+    type = models.IntegerField(
+        choices=MessageType.choices,
+        default=MessageType.INFO,
+        verbose_name="نوع پیام",
+    )
+    date = models.DateTimeField(
+        verbose_name="تاریخ",
+    )
+    badges = models.JSONField(
+        verbose_name="نشان‌ها",
+    )  # Storing array of strings as JSON
+    user_can_delete = models.BooleanField(
+        default=False, 
+        verbose_name="قابل حذف توسط کاربر",
+    )
+    background = models.CharField(
+        max_length=50, 
+        blank=True, 
         null=True, 
-        blank=True
+        verbose_name="پس‌زمینه",
     )
 
-    
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='messages',
+        verbose_name="کاربر"
+    )
 
     def __str__(self):
-        return f"{self.message} {self.time}"
+        return self.title

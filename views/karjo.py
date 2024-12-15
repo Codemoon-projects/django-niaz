@@ -4,7 +4,6 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from user.karjoModel import Karjomodel
 from rest_framework import serializers
-from views.profile import RepotageSerializer
 from models.repotageModel.models import Repotagemodel
 
 

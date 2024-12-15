@@ -58,17 +58,17 @@ class ResomePanel(admin.ModelAdmin):
 # --------------------------------------------------------- messagesModel
 @admin.register(Messagesmodel)
 class MessagesmodelPanel(ImportExportMixin, admin.ModelAdmin):
-    @admin.display(description="انجام شده",boolean=True)
-    def testtime(obj,self):
-        today = datetime.now().date()
-        print(today)
-        print(self.time)
-        if self.time <= today:
-            return True
-        else:
-            return False
-    list_display=['time', 'message', 'testtime']
-    list_filter=['time']
+    # @admin.display(description="انجام شده",boolean=True)
+    # def testtime(obj,self):
+    #     today = datetime.now().date()
+    #     print(today)
+    #     print(self.time)
+    #     if self.time <= today:
+    #         return True
+    #     else:
+    #         return False
+    list_display=["title", "type", "user"]
+    list_filter=['user']
 # --------------------------------------------------------- repotageModel
 
 

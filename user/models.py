@@ -108,7 +108,7 @@ class NotifSerializer(serializers.ModelSerializer):
 
 class UsersSerializer(serializers.ModelSerializer):
     
-    notig = NotifSerializer(many=True)
+    notif = NotifSerializer(many=True)
     
     class Meta:
         model = AllUsers
