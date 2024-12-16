@@ -275,9 +275,9 @@ class KarjomodelPanel(ImportExportMixin, admin.ModelAdmin):
             return None
 
     @admin.display(description="فایل تکنسین")
-    def technisian_file_image(self, obj):
-        if obj.technisian_file.url is not None:
-            return mark_safe(f'<img src="{obj.technisian_file.url}" height="400" width="400" />')
+    def technician_file_image(self, obj):
+        if obj.technician_file.url is not None:
+            return mark_safe(f'<img src="{obj.technician_file.url}" height="400" width="400" />')
         else:
             return None
 
@@ -309,7 +309,7 @@ class KarjomodelPanel(ImportExportMixin, admin.ModelAdmin):
     'education_file_image',
     'worked_image',
     'meliNo_image',
-    'technisian_file_image',
+    'technician_file_image',
     'certificate_file_image',
     'badBack_file_image',
     'retrain_file_image'
@@ -325,7 +325,7 @@ class KarjomodelPanel(ImportExportMixin, admin.ModelAdmin):
     'meliNo_file', 'meliNo_image', 'meliNo',
     'referralCode',
     'knowType',
-    'technisian', 'technisian_file', 'technisian_file_image',
+    'technician', 'technician_file', 'technician_file_image',
     'certificate', 'certificate_file', 'certificate_file_image',
     'program',
     'badBack', 'badBack_file', 'badBack_file_image',

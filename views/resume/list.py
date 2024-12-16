@@ -27,8 +27,13 @@ class ResumeView(APIView):
         data = request.data
         
         if user.usertype == UsersType.KARJO_MODEL:
+            try:
+                karjo = user.userdata
+            except:
+                return Response(status=status.HTTP_401_UNAUTHORIZED)
+                
             resume = ResomeModel.objects.filter(
-                user_id = user.pk,
+                user_id = karjo.pk,
             )
             result = ResumeSerializer(resume, many=True)
             return Response(result.data, status=status.HTTP_200_OK)
