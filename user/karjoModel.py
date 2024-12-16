@@ -19,8 +19,8 @@ class Type(models.IntegerChoices):
 
 class genderType(models.IntegerChoices):
     
-    CHOICE_0 = 0, 'مرد' 
-    CHOICE_1 = 1, 'زن'
+    CHOICE_1 = 0, 'زن'
+    CHOICE_0 = 1, 'مرد' 
 
 class tahsilatType(models.IntegerChoices):
     
@@ -68,20 +68,12 @@ class Karjomodel(RefModel):
     
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
-    
     type = models.IntegerField(
         'عنوان شغلی خود را انتخاب کنید',
         choices=Type.choices,
     )
-    
-    banner = models.FileField(
-        verbose_name="بنر",
-        upload_to="static/karjo/banner_file",
-        null=True,
-        blank=True
-    )
 
-    logo = models.FileField(
+    profilePicture = models.FileField(
         verbose_name="لوگو",
         upload_to="static/karjo/logo_file",
         null=True,
@@ -100,7 +92,9 @@ class Karjomodel(RefModel):
     )
     
     birthdate = jmodels.jDateField(
-        verbose_name="تاریخ تولد"
+        verbose_name="تاریخ تولد",
+        null=True,
+        blank=True
     )
     
     
@@ -118,6 +112,8 @@ class Karjomodel(RefModel):
     education = models.IntegerField(
         'وضعیت تحصیلات',
         choices=tahsilatType.choices,
+        null=True,
+        blank=True
     )
     
     
@@ -131,6 +127,8 @@ class Karjomodel(RefModel):
     worked = models.IntegerField(
         'آیا سابقه کار دارید؟',
         choices=SelectChoicesType.choices,
+        null=True,
+        blank=True
     )
     
     
@@ -145,8 +143,16 @@ class Karjomodel(RefModel):
     nezam = models.IntegerField(
         'وضعیت نظام وظیفه',
         choices=nezamType.choices,
+        null=True,
+        blank=True
     )
     
+    
+    nezam_file = models.FileField(
+        null=True,blank=True,
+        upload_to="static/nezam_file_file",
+        verbose_name="کارت نظام وظیفه"
+    )
     
     meliNo_file = models.FileField(
         null=True,blank=True,
@@ -156,9 +162,10 @@ class Karjomodel(RefModel):
     
     
     meliNo = models.CharField(
-
         max_length=100,
-        verbose_name="کد ملی"
+        verbose_name="کد ملی",
+        null=True,
+        blank=True
     )
     
     
@@ -169,19 +176,22 @@ class Karjomodel(RefModel):
         verbose_name="معرف"
     )
     
-    
     knowType = models.IntegerField(
         'نحوه‌ی آشنایی با سایت',
         choices=ashnaiiType.choices,
+        null=True,
+        blank=True
     )
     
     
-    technisian = models.IntegerField(
+    technician = models.IntegerField(
         'آیا دارای گواهی تکنسین دارویی یا آرایشی بهداشتی هستید ؟ ',
         choices=SelectChoicesType.choices,
+        null=True,
+        blank=True
     )
     
-    technisian_file = models.FileField(
+    technician_file = models.FileField(
         null=True,blank=True,
         verbose_name="گواهی تکنسین",
         upload_to="static/teknesian_file_file",
@@ -191,6 +201,8 @@ class Karjomodel(RefModel):
     certificate = models.IntegerField(
         'آیا دارای گواهی مرتبط هستید ؟',
         choices=SelectChoicesType.choices,
+        null=True,
+        blank=True
     )
     
     
@@ -205,12 +217,16 @@ class Karjomodel(RefModel):
     program = models.IntegerField(
         'در صورت آشنایی با نرم‌افزار مرتبط، آن را انتخاب کنید ',
         choices=narmAfzarType.choices,
+        null=True,
+        blank=True
     )
     
     
     badBack = models.IntegerField(
         'آیا دارای گواهی عدم سو پیشینه هستید ؟',
         choices=SelectChoicesType.choices,
+        null=True,
+        blank=True
     )
     
     badBack_file = models.FileField(
@@ -223,6 +239,8 @@ class Karjomodel(RefModel):
     retrain = models.IntegerField(
         'آیا دارای ساعات بازآموزی معتبر هستید ؟',
         choices=SelectChoicesType.choices,
+        null=True,
+        blank=True
     )
     
     retrain_file = models.FileField(

@@ -9,9 +9,12 @@ from models.repotageModel.models import Repotagemodel
 
 
 class KarjoSerializer(serializers.ModelSerializer):
+    
+    user_id = serializers.IntegerField()
+    
     class Meta:
         model=Karjomodel
-        exclude = ["user"]
+        fields = ["user_id", "type", "fName", "lName", "gender", "referralCode", "knowType"]
 
 
 class KarjoView(APIView):
@@ -26,17 +29,21 @@ class KarjoView(APIView):
         user = request.user
         user.dataAccepted = True #for test
         user.save()
+
         try:
-            karjo, isCreated = Karjomodel.objects.get_or_create(
-                user=user,
-                noFaaliat=data['type'],
-                )
-        except Exception as e: 
-            print(f"karjo{e}")
-        try:
-            _karjo = KarjoSerializer(data)
-            _karjo.save()
+            karjo = user.userdata
         except Exception as e:
-            print(f"_karjo{e}")
+            print("karjo model not found. generate karjo")
+            karjo = KarjoSerializer(data={**data, "user_id": user.pk})
+            try:
+                karjo.is_valid(raise_exception=True)
+            except Exception as e:
+                print(e)
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+            karjo.save()
+
         return Response(status=status.HTTP_202_ACCEPTED)
+    
+    
+    
     

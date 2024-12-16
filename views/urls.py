@@ -12,11 +12,11 @@ from views.onerepotage import RepotageOneView
 from views.oneresume import OneResumeView
 from views.messages import MessageListView
 from views.profile.karfarma import KarfarmaProfileUpdateView
+from views.profile.karjo import KarjoProfileUpdater
 
 urlpatterns = [
     path("main/", MainView.as_view(), name="main"),
     path("blogs/", BlogsView.as_view(), name="blogs"),
-    path("resume", ResumeView.as_view(), name="resume"),
     path("resume/<int:pk>", OneResumeView.as_view(), name="oneresume"),
     path("blogs/<int:pk>", BlogView.as_view(), name="blog page"),
     path("drug-stores/", DrugView.as_view(), name="drug-stores"),
@@ -27,6 +27,8 @@ urlpatterns = [
     path("sms", SmsView.as_view()),
     path("repotage", RepotageView.as_view(), name="repotages"),
     path("messages", MessageListView.as_view(), name="messagess"),
+    path("resumes", ResumeView.as_view(), name="resume"),
     
     path("profile/karfarma", KarfarmaProfileUpdateView.as_view()),
+    path("profile/karjo", KarjoProfileUpdater.as_view()),
 ]

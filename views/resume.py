@@ -5,30 +5,32 @@ from models.resomeModel.models import ResomeModel
 from models.blogsModel.comments import Comment
 from rest_framework import serializers
 from user.models import UsersType
+from rest_framework import serializers
 
-
-
-class ResomeSerializer(serializers.ModelSerializer):
-    
+class ResumeSerializer(serializers.ModelSerializer):
     class Meta:
         model = ResomeModel
-        fields = "__all__"
+        fields = ['id', 'show', 'status', 'desc', 'repotage', 'user', 'datetime']
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['datetime'] = instance.datetime.isoformat() if instance.datetime else None
+        return representation
+
 
 
     
 class ResumeView(APIView):
     
     def get(self, request):
-
-        if request.user.usertype == UsersType.KARJO_MODEL:
-
-            data = request.data
-            user = request.user
-
+        user = request.user
+        data = request.data
+        
+        if user.usertype == UsersType.KARJO_MODEL:
             resume = ResomeModel.objects.filter(
                 user_id = user.pk,
             )
-            result = ResomeSerializer(resume, many=True)
+            result = ResumeSerializer(resume, many=True)
             return Response(result.data, status=status.HTTP_200_OK)
 
         elif user.usertype == UsersType.KARFARMA_MODEL:
