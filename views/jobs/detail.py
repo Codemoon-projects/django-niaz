@@ -5,7 +5,7 @@ from rest_framework import serializers
 from models.repotageModel.models import Repotagemodel
 from user.models import UsersType
 from models.resomeModel.models import ResomeModel
-from views.repotage import RepotageSerializer
+from views.jobs.list import RepotageSerializer
 from models.repotageModel.tags import TagModel
 
 

@@ -51,12 +51,11 @@ class ResumeView(APIView):
 
             try:
                 # add to database
-                resume = ResomeModel.objects.get_or_create(
+                ResomeModel.objects.get_or_create(
                     repotage_id = data['repotage_id'],
                     desc = data['desc'],
                     user = user
                 )
-                _resume = resume.save()
             except Exception as e:
                 print(e)
                 return Response(status=status.HTTP_400_BAD_REQUEST)
