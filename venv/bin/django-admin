@@ -1,4 +1,4 @@
-#!/home/edior/Documents/niaz/niazFarmesi-server/venv/bin/python
+#!/home/edior/Documents/project/niaz/django-niaz/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
