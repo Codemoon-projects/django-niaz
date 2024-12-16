@@ -5,9 +5,9 @@ from rest_framework import serializers
 from models.repotageModel.models import Repotagemodel
 from user.models import UsersType
 from models.resomeModel.models import ResomeModel
-from views.profile import RepotageSerializer
+from views.profile.profile import RepotageSerializer
 from models.repotageModel.tags import TagModel
-from views.profile import FromKarfarmaSerializer
+from views.profile.profile import FromKarfarmaSerializer
 
 
 

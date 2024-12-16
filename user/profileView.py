@@ -6,7 +6,7 @@ from rest_framework import serializers
 
 
 
-class KarjoSerializer(serializers.ModelSerializer):
+class KarfarmaSerializer(serializers.ModelSerializer):
     class Meta:
         model=Karfarmamodel
         exclude = ["user"]
@@ -17,7 +17,6 @@ class ChangeData(APIView):
     
     def put(self, request):
         data = request.data
-        print(data)
         
         if "type" not in data.keys():
             return Response(status=status.HTTP_400_BAD_REQUEST)
@@ -33,10 +32,11 @@ class ChangeData(APIView):
 
 
         try:
-            _karfarma = KarjoSerializer(data)
-            _karfarma.save()
+            karjoData = KarfarmaSerializer(data)
+            karjoData.is_valid()
+            karjoData.save()
         except Exception as e:
-            print(f"_karfarma{e}")
+            print(f"karjoData error:{e}")
         
         
         return Response(status=status.HTTP_202_ACCEPTED)

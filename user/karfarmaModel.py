@@ -1,7 +1,7 @@
 from core.models import RefModel
 from django.db import models
 from django.conf import settings
-from django.core.validators import RegexValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django_jalali.db import models as jmodels
 
 
@@ -90,9 +90,10 @@ class Karfarmamodel(RefModel):
     
     phoneMajazi = models.IntegerField(
         verbose_name="شماره تلفن مجازی",
-        validators=[RegexValidator(
-            regex= r"^(?:0|98|98|980|0098|098|00980)?(9\d{9})$"
-        )],
+        validators=[
+            MinValueValidator(9000000000),
+            MaxValueValidator(9999999999)
+        ],
         null=True,
         blank=True,
     )

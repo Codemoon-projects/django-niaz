@@ -33,7 +33,11 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
+<<<<<<< HEAD
 set -gx VIRTUAL_ENV "/home/edior/Documents/project/niaz/django-niaz/venv"
+=======
+set -gx VIRTUAL_ENV "/home/nora/projects/niazFarmesi/django/venv"
+>>>>>>> 69dc06a58197d032a911c812d6bece476754920a
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

@@ -68,12 +68,13 @@ class SendSMSPhoneView(APIView):
         try:
             user = AllUsers.objects.get(
                 username=data['phone']
-                )
+            )
+            
+            if user.usertype != data['type']:
+                return Response("این شماره تلفن قبلا ثبت شده است", status=status.HTTP_401_UNAUTHORIZED)
+            
         except Exception as e:
             print(e)
-
-        if user.usertype != data['type']:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
 
         print(data['phone'])
         if "type" not in data.keys():
