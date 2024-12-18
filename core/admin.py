@@ -195,7 +195,7 @@ class KarfarmaPanel(admin.ModelAdmin):
         'address',
         'placeName', 'date',
         'website', 'rubika', 'phoneMajazi',
-        'lat', 'long'
+        'lat', 'long', 'user'
     ]
     forms='TestForm'
 #--------------------------------------- KARFARMAMODEL USER ADMIN
@@ -330,6 +330,7 @@ class KarjomodelPanel(ImportExportMixin, admin.ModelAdmin):
     'program',
     'badBack', 'badBack_file', 'badBack_file_image',
     'retrain', 'retrain_file', 'retrain_file_image',
+    'user'
             ]
 
     list_display=[
