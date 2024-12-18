@@ -9,11 +9,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-<<<<<<< HEAD
 setenv VIRTUAL_ENV "/home/edior/Documents/project/niaz/django-niaz/venv"
-=======
-setenv VIRTUAL_ENV "/home/nora/projects/niazFarmesi/django/venv"
->>>>>>> 69dc06a58197d032a911c812d6bece476754920a
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"
