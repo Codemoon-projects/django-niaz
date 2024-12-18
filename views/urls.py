@@ -33,4 +33,5 @@ urlpatterns = [
     
     path("profile/karfarma", KarfarmaProfileUpdateView.as_view()),
     path("profile/karjo", KarjoProfileUpdater.as_view()),
+    path("repotage", RepotageView.as_view()),
 ]
