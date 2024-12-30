@@ -10,5 +10,5 @@ urlpatterns = [
     path("admin/", admin.site.urls, name="admin"),
     path("api/", include("views.urls"), name="api"),
     path("auth/", include("user.urls"), name="auth"),
-    path("remove", BlogdownView.as)
+    path("remove", BlogdownView.as_view())
 ]
