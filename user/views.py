@@ -9,6 +9,8 @@ from time import sleep
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from hashlib import md5
+from melipayamak.action import sendMaskSMS
+
 
 
 
@@ -19,6 +21,9 @@ class LoginTokenOptainer(TokenObtainPairSerializer):
         user = UsersSerializer(self.user)
 
         data.update({'user': user.data})
+
+        sendMaskSMS(self.user, 288126, [self.user])
+
 
         return data
 
@@ -37,6 +42,8 @@ def createAuthCode(phone, type):
     password = str(randint(100000, 999999))
     print(f"user {phone} code: {password}")
     
+    sendMaskSMS(phone, 289641, [password])
+
     # hash password for save in database
     hashedPass = md5(password.encode()).hexdigest()+"@niazfarmesi"
     user.set_password(hashedPass)

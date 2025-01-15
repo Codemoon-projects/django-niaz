@@ -23,6 +23,8 @@ class ChangeData(APIView):
         
         user = request.user
         user.dataAccepted = True
+        sendMaskSMS(user, 288131, [user])
+        
         user.save()
         
         karfarma, isCreated = Karfarmamodel.objects.get_or_create(

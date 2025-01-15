@@ -8,6 +8,7 @@ from models.resomeModel.models import ResomeModel
 from views.profile.profile import RepotageSerializer
 from models.repotageModel.tags import TagModel
 from views.profile.profile import FromKarfarmaSerializer
+from datetime import datetime
 
 
 
@@ -73,6 +74,16 @@ class RepotageView(APIView):
 
             # return data
             return Response(repotage.data, status=status.HTTP_200_OK)
+
+
+            current_datetime = datetime.now()
+            date = str(current_datetime).split(" ")
+            tarikh = date[0]
+            time = date[1].split(":")
+            saat = f"{time[0]}:{time[1]}"
+            print(tarikh,saat)
+            sendMaskSMS(request.user, 288137, [request.user, repotage.data["id"],tarikh, saat ])
+
 
         elif user.usertype == UsersType.KARJO_MODEL:
             return Response(status=status.HTTP_200_OK)
