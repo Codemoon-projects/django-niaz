@@ -7,6 +7,7 @@ from models.blogsModel.writer import WriterModel
 from rest_framework import serializers
 from views.blogs import BlogsComponentSerializer
 from user.models import AllUsers
+from models.blogsModel.banner import Banner
 
 
 class BlogdownView(APIView):
@@ -29,6 +30,12 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class BannerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Banner
+        fields = "__all__"
+
+
 class MainView(APIView):
     
     def get(self, request):
@@ -36,11 +43,13 @@ class MainView(APIView):
         blog = Blogsmodel.objects.all()[:3]
         writers = WriterModel.objects.all()
         categories = CategoryModel.objects.all()
+        banner = Banner.objects.all()
         
         res = {
             "blogs": BlogsComponentSerializer(blog, many=True).data,
             "writers": WriterSerializer(writers, many=True).data,
-            "categories": CategorySerializer(categories, many=True).data
+            "categories": CategorySerializer(categories, many=True).data,
+            "banner" : BannerSerializer(banner, many=True).data
         }
         
         return Response(res, status=status.HTTP_200_OK)

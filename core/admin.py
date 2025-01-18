@@ -6,6 +6,7 @@ from models.repotageModel.models import Repotagemodel
 from models.blogsModel.writer import WriterModel
 from models.blogsModel.models import Blogsmodel
 from models.blogsModel.category import CategoryModel
+from models.blogsModel.banner import Banner
 from models.drugstoresModel.peson import PersonModel
 from models.drugstoresModel.city import CityModel
 from models.contactModel.models import Contactmodel
@@ -26,6 +27,9 @@ from django import forms
 from jalali_date.fields import JalaliDateField, SplitJalaliDateTimeField
 from jalali_date.widgets import AdminJalaliDateWidget, AdminSplitJalaliDateTime
 
+@admin.register(Banner)
+class BannerPanel(admin.ModelAdmin):
+    list_display=["name"]
 
 @admin.register(AllUsers)
 class AdminPanel(ImportExportMixin, admin.ModelAdmin):

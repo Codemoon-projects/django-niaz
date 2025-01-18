@@ -11,6 +11,7 @@ class Drugstoresmodel(RefModel):
         verbose_name="داروخانه"
         verbose_name_plural="داروخانه ها"
     
+    image = models.ImageField(upload_to="drug/image", verbose_name="لوگو داروخانه", null=True, blank=True)
     
     name = models.CharField(
 
