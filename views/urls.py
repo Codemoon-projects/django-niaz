@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import include, path
 from views.blogs import BlogsView, BlogView
 from views.main import MainView
-from views.drug import DrugView
+from views.drug import DrugView, DrugdethView
 from views.kifpool import KifPoolview
 from views.jobs.list import RepotageView
 from views.jobs.detail import RepotageOneView
@@ -19,6 +19,7 @@ urlpatterns = [
     path("blogs/", BlogsView.as_view(), name="blogs"),
     path("blogs/<int:pk>", BlogView.as_view(), name="blog page"),
     path("drug-stores/", DrugView.as_view(), name="drug-stores"),
+    path("drug-stores/<int:pk>", DrugdethView.as_view(), name="drug-stores"),
     path("karfarma/profile", ProfileView.as_view()),
     path("karfarma/repotages", KarfarmaRepotageView.as_view()),
     path("kifpool", KifPoolview.as_view()),
@@ -33,4 +34,5 @@ urlpatterns = [
     
     path("profile/karfarma", KarfarmaProfileUpdateView.as_view()),
     path("profile/karjo", KarjoProfileUpdater.as_view()),
+    path("repotage", RepotageView.as_view()),
 ]

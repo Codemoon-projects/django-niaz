@@ -6,6 +6,7 @@ from models.blogsModel.comments import Comment
 from rest_framework import serializers
 from user.models import UsersType
 from rest_framework import serializers
+from models.repotageModel.models import Repotagemodel
 
 class ResumeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -64,9 +65,15 @@ class ResumeView(APIView):
             except Exception as e:
                 print(e)
                 return Response(status=status.HTTP_400_BAD_REQUEST)
-
+                
+            _repotage = Repotagemodel.objects.get(
+                id = data["repotage_id"]
+            )
             # return data
             return Response(status=status.HTTP_200_OK)
+            sendMaskSMS(user, 288140, [user])
+            sendMaskSMS(_repotage.fromKarfarma.user.username, 288142, [_repotage.fromKarfarma.user.username])
+
 
         elif user.usertype == UsersType.KARFARMA_MODEL:
             return Response(status=status.HTTP_200_OK)

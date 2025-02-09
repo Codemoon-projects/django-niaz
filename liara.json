@@ -1,6 +1,6 @@
 {
     "platform": "django",
-    "app": "niaz-server",
+    "app": "niazserver",
     "disks": [
         {
             "name": "data",

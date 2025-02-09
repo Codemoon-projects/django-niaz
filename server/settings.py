@@ -97,6 +97,8 @@ ALLOWED_HOSTS = ["*"]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "https://niaz.liara.run"
+    "https://niazpharmacy.ir/"
 ]
 
 
@@ -217,6 +219,29 @@ AUTH_USER_MODEL = 'user.AllUsers'
 #                               INTERNATIONALIZATION                                |
 #                                                                                   |
 # ----------------------------------------------------------------------------------+
+
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "OPTIONS": {
+            "default_acl": 'public-read',
+            "querystring_auth": False
+        },
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
+
+AWS_S3_ENDPOINT_URL = "https://niaz.storage.c2.liara.space"
+AWS_STORAGE_BUCKET_NAME = "niaz"
+
+AWS_S3_ACCESS_KEY_ID = "5cmc0slub2ctgndr"
+AWS_S3_SECRET_ACCESS_KEY = "857c4e3c-713f-44b8-9d76-3d6dfa992d9c"
+
+AWS_DEFAULT_ACL = 'public-read'
+AWS_BUCKET_ACL = 'public-read'
 
 
 LANGUAGE_CODE = "en"
