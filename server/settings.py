@@ -219,7 +219,7 @@ AUTH_USER_MODEL = 'user.AllUsers'
 # ----------------------------------------------------------------------------------+
 
 
-LANGUAGE_CODE = "fa"
+LANGUAGE_CODE = "en"
 
 TIME_ZONE = "Asia/Tehran"
 

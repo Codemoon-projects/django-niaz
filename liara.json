@@ -1,0 +1,10 @@
+{
+    "platform": "django",
+    "app": "niaz-server",
+    "disks": [
+        {
+            "name": "data",
+            "mountTo": "data"
+        }
+    ]
+}
