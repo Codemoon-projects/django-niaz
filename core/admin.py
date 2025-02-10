@@ -26,6 +26,12 @@ from models.repotageModel.tags import TagModel
 from django import forms
 from jalali_date.fields import JalaliDateField, SplitJalaliDateTimeField
 from jalali_date.widgets import AdminJalaliDateWidget, AdminSplitJalaliDateTime
+from core.models import Tablig
+
+
+@admin.register(Tablig)
+class TabligPanel(admin.ModelAdmin):
+    list_display=["name", "link"]
 
 @admin.register(Banner)
 class BannerPanel(admin.ModelAdmin):

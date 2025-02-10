@@ -95,10 +95,11 @@ ALLOWED_HOSTS = ["*"]
 
 # cors
 CORS_ALLOWED_ORIGINS = [
+    "https://niazpharmacy.ir",
+    "https://niazpharmacy.ir",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://niaz.liara.run"
-    "https://niazpharmacy.ir/"
+    "https://niaz.liara.run",
 ]
 
 
