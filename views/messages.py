@@ -11,7 +11,6 @@ class MessageSerializer(serializers.ModelSerializer):
 
 
 class MessageListView(APIView):
-    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         user = request.user
