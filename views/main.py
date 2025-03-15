@@ -8,6 +8,7 @@ from rest_framework import serializers
 from views.blogs import BlogsComponentSerializer
 from user.models import AllUsers
 from models.blogsModel.banner import Banner
+from core.models import Tablig
 
 
 class BlogdownView(APIView):
@@ -17,6 +18,26 @@ class BlogdownView(APIView):
         return response("good bye")
 
 
+
+class TabligView(APIView):
+    def get(self, request):
+        try:
+            tablig = Tablig.objects.all()
+            if len(tablig) >= 0:
+                print("..asihf")
+                serializer = TabligSerializer(tablig, many=True)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            else:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            print(e)
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+class TabligSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tablig
+        fields   = ["id", "name", "desc", "link", "image"]
 
 class WriterSerializer(serializers.ModelSerializer):
     class Meta:

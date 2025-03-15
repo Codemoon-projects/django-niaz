@@ -22,6 +22,7 @@ class KarjoView(APIView):
     def put(self, request):
         data = request.data
         print(data)
+        print(request.user)
         
         if "type" not in data.keys():
             return Response(status=status.HTTP_400_BAD_REQUEST)

@@ -9,6 +9,8 @@ from views.profile.profile import RepotageSerializer
 from models.repotageModel.tags import TagModel
 from views.profile.profile import FromKarfarmaSerializer
 from datetime import datetime
+from rest_framework.permissions import AllowAny
+
 
 
 
@@ -26,8 +28,23 @@ class RepotageShowAllSerializer(serializers.ModelSerializer):
 
 
 
+
+
+class RepoSearch(APIView):
+    def post(self,request):
+        try:
+            repo = Repotagemodel.objects.filter(
+                desc__icontains = request.data["value"]
+            )
+            seri = RepotageShowAllSerializer(repo, many=True)
+            return Response(seri.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            print(e)
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+
 class RepotageView(APIView):
-    
     
     def get(self, request):
 
