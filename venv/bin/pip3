@@ -1,4 +1,4 @@
-#!/home/aliroide/Documents/niaz/django-niaz/venv/bin/python
+#!/home/nora/projects/niazFarmesi/django/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
